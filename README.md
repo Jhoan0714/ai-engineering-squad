@@ -60,16 +60,28 @@ Target demo: in ~15 minutes, run one change from intent to green checks and huma
 ## Repository layout (summary)
 
 ```text
-roles/        # Role packs (AGENT.md) — MVP folders scaffolded
+roles/        # Role packs (AGENT.md)
 skills/       # Shared skills (SKILL.md)
 workflows/    # Multi-role recipes
-contracts/    # Handoff shapes for embeddable validation
+contracts/    # Handoff shapes (JSON Schema)
+packages/aesquad/  # H0 CLI + MCP validate surface
 adapters/     # Tool wiring (portable + multi-agent)
 examples/     # Demo apps (later)
 docs/         # Product documentation
 ```
 
 See [docs/layout.md](docs/layout.md). Canonical content is tool-agnostic; adapters sync into IDE/runtime paths.
+
+## Embed (H0)
+
+Validate handoff JSON with the shared **CLI + MCP** package:
+
+```bash
+cd packages/aesquad && npm install
+node ./bin/aesquad.mjs validate --examples
+```
+
+Full embed notes: [packages/aesquad/README.md](packages/aesquad/README.md).
 
 ## Contributing / PRs
 
@@ -81,7 +93,7 @@ Repository content is **English** (agents, skills, docs).
 
 ## Status
 
-**Planning** — structure and product definition in progress; agent packs and adapters not shipped yet.
+**MVP in progress** — roles, contracts, skills, feature-delivery workflow, and H0 `aesquad` validate (CLI + MCP) shipped; adapters and sample app still open.
 
 ## License
 
