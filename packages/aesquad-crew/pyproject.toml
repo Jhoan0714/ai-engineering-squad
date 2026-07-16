@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aesquad-crew"
+version = "0.1.0"
+description = "Dynamic CrewAI runtime for AI Engineering Squad pipelines"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+dependencies = [
+  "crewai>=0.80.0",
+  "python-dotenv>=1.0.0",
+  "PyYAML>=6.0",
+]
+
+[project.scripts]
+aesquad-crew = "aesquad_crew.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["aesquad_crew*"]
