@@ -1,7 +1,9 @@
 # Workflows
 
-Multi-role collaboration recipes (e.g. feature delivery).
+Multi-role collaboration recipes.
 
-Files: `workflows/<workflow-id>.md`.
+| Workflow | Status | Description |
+|----------|--------|-------------|
+| [feature-delivery.md](feature-delivery.md) | Ready | MVP happy path: PM → Senior SE → QA → Automation → Human |
 
-MVP workflow `feature-delivery` is backlog **D1**. See [docs/layout.md](../docs/layout.md).
+Files: `workflows/<workflow-id>.md`. See [docs/layout.md](../docs/layout.md).
