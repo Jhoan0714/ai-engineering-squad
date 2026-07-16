@@ -4,3 +4,7 @@ npm-debug.log*
 dist/
 coverage/
 *.tgz
+examples/demo-todo/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
