@@ -6,6 +6,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
+from aesquad_crew.llm import LlmConfig, build_llm
 from aesquad_crew.pipeline import Pipeline, PipelineStep
 from aesquad_crew.role_loader import RoleSpec, load_role
 from aesquad_crew.task_builder import build_expected_output, build_task_description
@@ -17,6 +18,7 @@ class BuiltCrew:
     steps: tuple[PipelineStep, ...]
     roles: dict[str, RoleSpec]
     tasks_by_step: dict[str, Any]
+    llm_config: LlmConfig | None = None
 
 
 def build_crew(
@@ -26,6 +28,7 @@ def build_crew(
     change_id: str,
     idea: str,
     verbose: bool = True,
+    llm_config: LlmConfig | None = None,
 ) -> BuiltCrew:
     try:
         from crewai import Agent, Crew, Process, Task
@@ -34,6 +37,8 @@ def build_crew(
             "crewai is required to run the squad. "
             "Install with: pip install -r packages/aesquad-crew/requirements.txt"
         ) from exc
+
+    llm = build_llm(llm_config) if llm_config else None
 
     roles_root = kit_root / "roles"
     skills_root = kit_root / "skills"
@@ -49,13 +54,16 @@ def build_crew(
             )
         role = roles[step.role]
         if step.role not in agents:
-            agents[step.role] = Agent(
-                role=role.title,
-                goal=role.goal,
-                backstory=role.backstory,
-                verbose=verbose,
-                allow_delegation=False,
-            )
+            agent_kwargs: dict[str, Any] = {
+                "role": role.title,
+                "goal": role.goal,
+                "backstory": role.backstory,
+                "verbose": verbose,
+                "allow_delegation": False,
+            }
+            if llm is not None:
+                agent_kwargs["llm"] = llm
+            agents[step.role] = Agent(**agent_kwargs)
 
     tasks_by_step: dict[str, Any] = {}
     ordered_tasks: list[Any] = []
@@ -96,4 +104,5 @@ def build_crew(
         steps=pipeline.steps,
         roles=roles,
         tasks_by_step=tasks_by_step,
+        llm_config=llm_config,
     )
