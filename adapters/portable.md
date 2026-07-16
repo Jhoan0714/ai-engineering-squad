@@ -104,5 +104,5 @@ node ./bin/aesquad.mjs validate --dir /path/to/handoffs/<changeId>
 ## What this adapter is not
 
 - Not an auto-orchestrator of four agents in one IDE chat
-- Not a replacement for OpenClaw / multi-agent runtimes (see [multi-agent.md](multi-agent.md))
+- Not a replacement for CrewAI / multi-agent runtimes (see [multi-agent.md](multi-agent.md))
 - Not a fork of role content into tool-specific prose (link the canonical `AGENT.md`)
