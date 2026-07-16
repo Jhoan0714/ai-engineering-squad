@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-add-todo-priority",
+  "producedBy": "human",
+  "decision": "approve",
+  "decidedAt": "2026-07-16T15:00:00Z",
+  "summary": "Demo change approved: checks green and residual gaps accepted for sample scope.",
+  "acceptedRisks": [
+    "No load testing.",
+    "In-memory only."
+  ],
+  "refs": {
+    "acceptancePackageRef": "handoffs/acceptance-package.json",
+    "implementationHandoffRef": "handoffs/implementation-handoff.json",
+    "riskNotesRef": "handoffs/risk-notes.json",
+    "checkMappingRef": "handoffs/check-mapping.json"
+  }
+}
