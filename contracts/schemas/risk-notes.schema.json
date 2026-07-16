@@ -1,0 +1,132 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Jhoan0714/ai-engineering-squad/contracts/schemas/risk-notes.schema.json",
+  "title": "RiskNotes",
+  "description": "QA → Automation (and human) handoff: risk-ordered coverage, bugs, residual gaps, automation candidates.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "changeId",
+    "producedBy",
+    "acceptancePackageRef",
+    "implementationHandoffRef",
+    "risks",
+    "scenarios",
+    "residualGaps",
+    "automationCandidates"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "changeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producedBy": {
+      "type": "string",
+      "const": "qa-engineer"
+    },
+    "acceptancePackageRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "implementationHandoffRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "summary", "impact", "likelihood"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "summary": { "type": "string", "minLength": 1 },
+          "impact": { "type": "string", "enum": ["high", "medium", "low"] },
+          "likelihood": { "type": "string", "enum": ["high", "medium", "low"] },
+          "relatedAcceptanceCriteria": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          }
+        }
+      }
+    },
+    "scenarios": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "result"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "relatedAcceptanceCriteria": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "result": {
+            "type": "string",
+            "enum": ["pass", "fail", "blocked", "deferred"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "bugs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "severity", "stepsToReproduce", "expected", "actual"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "title": { "type": "string", "minLength": 1 },
+          "severity": {
+            "type": "string",
+            "enum": ["blocker", "high", "medium", "low"]
+          },
+          "stepsToReproduce": {
+            "type": "array",
+            "minItems": 1,
+            "items": { "type": "string", "minLength": 1 }
+          },
+          "expected": { "type": "string", "minLength": 1 },
+          "actual": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "residualGaps": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "What remains untested and why."
+    },
+    "automationCandidates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["scenarioId", "rationale", "suggestedLevel"],
+        "properties": {
+          "scenarioId": { "type": "string", "minLength": 1 },
+          "rationale": { "type": "string", "minLength": 1 },
+          "suggestedLevel": {
+            "type": "string",
+            "enum": ["unit", "api", "ui", "other"]
+          }
+        }
+      },
+      "description": "Stable, high-value scenarios for Automation Engineer — not a mandate to automate all."
+    },
+    "acceptanceRecommendation": {
+      "type": "string",
+      "enum": ["accept", "accept-with-risks", "reject"],
+      "description": "QA recommendation; human retains merge authority."
+    }
+  }
+}

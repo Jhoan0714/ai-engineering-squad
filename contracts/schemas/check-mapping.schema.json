@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Jhoan0714/ai-engineering-squad/contracts/schemas/check-mapping.schema.json",
+  "title": "CheckMapping",
+  "description": "Automation → human/CI handoff: AC ↔ automated check mapping, run instructions, and flake notes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "changeId",
+    "producedBy",
+    "acceptancePackageRef",
+    "riskNotesRef",
+    "mappings",
+    "howToRun"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "changeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producedBy": {
+      "type": "string",
+      "const": "automation-engineer"
+    },
+    "acceptancePackageRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "riskNotesRef": {
+      "type": "string",
+      "minLength": 1
+    },
+    "stack": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Project-chosen stack label (pluggable; not mandated by the kit)."
+        },
+        "adapter": {
+          "type": "string",
+          "description": "Optional adapter id or path used to run checks."
+        }
+      }
+    },
+    "mappings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["acceptanceCriterionId", "checkId", "level", "status"],
+        "properties": {
+          "acceptanceCriterionId": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Matches acceptanceCriteria[].id from the acceptance-package."
+          },
+          "checkId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "checkPath": {
+            "type": "string",
+            "description": "Path or identifier of the automated check in the repo."
+          },
+          "level": {
+            "type": "string",
+            "enum": ["unit", "api", "ui", "other"]
+          },
+          "status": {
+            "type": "string",
+            "enum": ["covered", "partial", "not-covered"]
+          },
+          "notes": { "type": "string" }
+        }
+      }
+    },
+    "howToRun": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["local"],
+      "properties": {
+        "local": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Command or steps to run checks locally."
+        },
+        "ci": {
+          "type": "string",
+          "description": "How checks run in CI, if applicable."
+        }
+      }
+    },
+    "flakinessNotes": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "uncoveredAcceptanceCriteria": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "AC ids intentionally not automated (still may be accepted via QA)."
+    }
+  }
+}

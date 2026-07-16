@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-password-reset",
+  "producedBy": "qa-engineer",
+  "acceptancePackageRef": "contracts/examples/acceptance-package.example.json",
+  "implementationHandoffRef": "contracts/examples/implementation-handoff.example.json",
+  "risks": [
+    {
+      "id": "R-1",
+      "summary": "Expired token still allows password change",
+      "impact": "high",
+      "likelihood": "medium",
+      "relatedAcceptanceCriteria": ["AC-3"]
+    },
+    {
+      "id": "R-2",
+      "summary": "Reset email not delivered or delayed",
+      "impact": "medium",
+      "likelihood": "medium",
+      "relatedAcceptanceCriteria": ["AC-1"]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "S-1",
+      "title": "Happy path reset",
+      "relatedAcceptanceCriteria": ["AC-1", "AC-2"],
+      "result": "pass",
+      "notes": "Verified against local outbox."
+    },
+    {
+      "id": "S-2",
+      "title": "Expired link rejected",
+      "relatedAcceptanceCriteria": ["AC-3"],
+      "result": "pass"
+    },
+    {
+      "id": "S-3",
+      "title": "Unknown email enumeration",
+      "relatedAcceptanceCriteria": ["AC-1"],
+      "result": "deferred",
+      "notes": "Needs product decision on response messaging."
+    }
+  ],
+  "bugs": [],
+  "residualGaps": [
+    "Cross-browser email client rendering not tested.",
+    "Rate limiting on reset requests not in this change scope."
+  ],
+  "automationCandidates": [
+    {
+      "scenarioId": "S-1",
+      "rationale": "Stable API path; high regression value.",
+      "suggestedLevel": "api"
+    },
+    {
+      "scenarioId": "S-2",
+      "rationale": "Security-sensitive; cheap to assert at API level.",
+      "suggestedLevel": "api"
+    }
+  ],
+  "acceptanceRecommendation": "accept-with-risks"
+}

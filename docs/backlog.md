@@ -114,7 +114,7 @@ Each `AGENT.md`: mission, when to use, responsibilities, out of scope, working s
 
 | ID | Item | Priority | Status | Depends on |
 |----|------|----------|--------|------------|
-| D3 | Handoff contracts (AC, OpenSpec ref, risk notes, check mapping, signoff) | P0 | todo | E1 |
+| D3 | Handoff contracts (AC, OpenSpec ref, risk notes, check mapping, signoff) | P0 | done | E1 |
 | D1 | `workflows/feature-delivery.md` | P0 | todo | D3, B1–B4 (draft OK in parallel) |
 | D2 | `workflows/bug-triage.md` | P1 | todo | D1 |
 
@@ -193,7 +193,8 @@ Use this when pulling work — ignore epic letters:
 - [x] B2
 - [x] B3
 - [x] B4
-- [ ] D3 D1
+- [x] D3
+- [ ] D1
 - [ ] C1 C2 C3 C4
 - [ ] H0a H0b H0c
 - [ ] E2 E3

@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Jhoan0714/ai-engineering-squad/contracts/schemas/acceptance-package.schema.json",
+  "title": "AcceptancePackage",
+  "description": "PM → Senior SE handoff: outcome, scope, acceptance criteria, and success definition.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "changeId",
+    "producedBy",
+    "outcome",
+    "inScope",
+    "outOfScope",
+    "acceptanceCriteria",
+    "successDefinition"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0",
+      "description": "Contract version for this handoff shape."
+    },
+    "changeId": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Stable id shared across all handoffs for one change (e.g. ticket or slug)."
+    },
+    "producedBy": {
+      "type": "string",
+      "const": "product-manager"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short human title for the change."
+    },
+    "outcome": {
+      "type": "string",
+      "minLength": 1,
+      "description": "User or business result this change must achieve."
+    },
+    "inScope": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Prioritized list of what is included."
+    },
+    "outOfScope": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 },
+      "description": "Explicit exclusions for this iteration."
+    },
+    "acceptanceCriteria": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "statement"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Stable AC id (e.g. AC-1) referenced by check-mapping."
+          },
+          "statement": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Testable criterion (Given/When/Then or equivalent)."
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["must", "should", "could"]
+          }
+        }
+      }
+    },
+    "successDefinition": {
+      "type": "string",
+      "minLength": 1,
+      "description": "How we will know the change worked."
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

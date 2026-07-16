@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Jhoan0714/ai-engineering-squad/contracts/schemas/implementation-handoff.schema.json",
+  "title": "ImplementationHandoff",
+  "description": "Senior SE → QA handoff: OpenSpec reference, implementation pointers, and verification notes.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "changeId",
+    "producedBy",
+    "acceptancePackageRef",
+    "openSpec",
+    "implementation",
+    "verificationNotes"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "changeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producedBy": {
+      "type": "string",
+      "const": "senior-software-engineer"
+    },
+    "acceptancePackageRef": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Path or URI to the acceptance-package instance for this changeId."
+    },
+    "openSpec": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "description": "Path to the OpenSpec change artifact in the repo."
+        },
+        "summary": {
+          "type": "string",
+          "description": "One-paragraph summary of the proposed technical change."
+        }
+      }
+    },
+    "implementation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary"],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "minLength": 1,
+          "description": "What was implemented (production code)."
+        },
+        "pullRequestUrl": {
+          "type": "string",
+          "format": "uri"
+        },
+        "pathsTouched": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "unitTestsAddedOrUpdated": {
+          "type": "boolean",
+          "description": "Whether the SE added/updated unit or local tests as part of the PR."
+        }
+      }
+    },
+    "verificationNotes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 },
+      "description": "How a human/QA can verify behavior manually."
+    },
+    "technicalRisks": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "alternativesConsidered": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    }
+  }
+}
