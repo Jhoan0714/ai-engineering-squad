@@ -1,0 +1,18 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-password-reset",
+  "producedBy": "human",
+  "decision": "approve-with-risks",
+  "decidedAt": "2026-07-16T06:00:00Z",
+  "summary": "Merge allowed. Accepted residual gaps on email-client rendering and rate limiting (tracked separately).",
+  "acceptedRisks": [
+    "Email client rendering not verified.",
+    "Reset request rate limiting out of scope for this change."
+  ],
+  "refs": {
+    "acceptancePackageRef": "contracts/examples/acceptance-package.example.json",
+    "implementationHandoffRef": "contracts/examples/implementation-handoff.example.json",
+    "riskNotesRef": "contracts/examples/risk-notes.example.json",
+    "checkMappingRef": "contracts/examples/check-mapping.example.json"
+  }
+}
