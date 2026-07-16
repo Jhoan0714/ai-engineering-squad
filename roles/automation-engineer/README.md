@@ -1,5 +1,6 @@
 # Automation Engineer
 
-**Status:** placeholder — `AGENT.md` lands in backlog **B4**.
+Role pack for the Automation Engineer agent.
 
-See the role summary in [docs/roles.md](../../docs/roles.md).
+- **Agent definition:** [AGENT.md](AGENT.md)
+- **Catalog summary:** [docs/roles.md](../../docs/roles.md)

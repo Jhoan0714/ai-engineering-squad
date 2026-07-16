@@ -17,7 +17,7 @@ Canonical entry point for role-based agents, skills, and workflows in this repos
 | Product Manager | [roles/product-manager/](roles/product-manager/) | Ready — [AGENT.md](roles/product-manager/AGENT.md) |
 | Senior Software Engineer | [roles/senior-software-engineer/](roles/senior-software-engineer/) | Ready — [AGENT.md](roles/senior-software-engineer/AGENT.md) |
 | QA Engineer | [roles/qa-engineer/](roles/qa-engineer/) | Ready — [AGENT.md](roles/qa-engineer/AGENT.md) |
-| Automation Engineer | [roles/automation-engineer/](roles/automation-engineer/) | Placeholder — content in backlog B4 |
+| Automation Engineer | [roles/automation-engineer/](roles/automation-engineer/) | Ready — [AGENT.md](roles/automation-engineer/AGENT.md) |
 
 ## Layout
 
