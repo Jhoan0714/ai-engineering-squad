@@ -11,7 +11,6 @@ Decisions still open before or during implementation. Update status as they clos
 | 4 | First multi-agent runtime to document | OpenClaw first (likely) vs keep runtime-generic longer | open |
 | 5 | Sample app stack for demo only | e.g. small Node/Python app — must stay clearly “example only” | open |
 | 7 | Repo visibility timeline | Public from first commit vs private until demo works | open |
-| 9 | H0 first surface | CLI vs GitHub Action vs tiny MCP — pick before H0b | open |
 
 ## Already decided
 
@@ -24,6 +23,7 @@ Decisions still open before or during implementation. Update status as they clos
 | Backlog rule | **P0 over epic order**; epics are thematic only |
 | Canonical layout | Root `roles/`, `skills/`, `workflows/`, `contracts/`, `adapters/`, `examples/` + `AGENTS.md` ([docs/layout.md](layout.md)); adapters sync, not fork |
 | Handoff contracts | **JSON + JSON Schema (Draft 2020-12)**; `schemaVersion` `1.0.0` ([contracts/](../contracts/)) |
+| H0 surfaces | **CLI + MCP** sharing `packages/aesquad` validate core (GitHub Action deferred) |
 | MVP roles | PM, Senior SE, QA, Automation Engineer |
 | Dual runtime | Portable kit **and** multi-agent runtime |
 | OpenSpec | Required on Senior SE path |
@@ -31,6 +31,6 @@ Decisions still open before or during implementation. Update status as they clos
 | Independence | No hard dependency on other personal OSS repos |
 | SDET / Platform / leads | Post-MVP (Epic G) |
 | DevOps in MVP | No (deferred as Platform Engineer) |
-| Full CLI/Action/MCP suite in MVP | No — only H0 `validate` thin slice |
+| Full CLI/Action/MCP suite in MVP | No — H0 is validate-only (CLI + MCP); richer orchestration post-MVP |
 | PR practice | One PR per backlog feature / milestone |
 | Commit practice | Prefer one commit per file within a feature PR |
