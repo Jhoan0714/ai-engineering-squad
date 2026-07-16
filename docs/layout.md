@@ -22,7 +22,8 @@ ai-engineering-squad/
 │   └── <skill-id>/
 │       └── SKILL.md
 ├── workflows/                # Multi-role collaboration recipes
-│   └── <workflow-id>.md
+│   ├── <workflow-id>.md      # Human-readable workflow
+│   └── <workflow-id>.pipeline.yaml  # Machine-readable steps (CrewAI)
 ├── contracts/                # Handoff shapes (JSON Schema + examples)
 │   └── ...
 ├── adapters/                 # How to wire canonical content into each tool
@@ -30,7 +31,8 @@ ai-engineering-squad/
 │   ├── portable.md           # Cursor / Claude / Copilot (E2)
 │   └── multi-agent.md        # CrewAI-first (E3)
 ├── packages/
-│   └── aesquad/              # H0 CLI + MCP validate surface
+│   ├── aesquad/              # H0 CLI + MCP validate surface
+│   └── aesquad-crew/         # Dynamic CrewAI runtime (orchestrator)
 ├── examples/                 # Demo apps and walkthroughs (F*)
 └── docs/                     # Product docs (MVP, backlog, roles catalog, …)
 ```
@@ -42,6 +44,7 @@ ai-engineering-squad/
 | Role | `roles/<kebab-case>/AGENT.md` | Industry title in prose; id in kebab-case |
 | Skill | `skills/<kebab-case>/SKILL.md` | YAML frontmatter `name` + `description` |
 | Workflow | `workflows/<kebab-case>.md` | One workflow per file |
+| Pipeline | `workflows/<kebab-case>.pipeline.yaml` | Machine steps for `aesquad-crew` |
 | Contract | `contracts/<kebab-case>.*` | JSON Schema + examples; validated by `packages/aesquad` |
 
 ## Adapter rule

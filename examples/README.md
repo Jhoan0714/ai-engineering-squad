@@ -9,10 +9,10 @@ Stack choices here are **demo-only** and do not define a required product stack.
 | Sample | Stack | Demo changeId |
 |--------|-------|----------------|
 | [demo-todo/](demo-todo/) | Python + Flask + pytest | `demo-add-todo-priority` |
-| [crewai/](crewai/) | CrewAI sequential crew | (your `--change-id`) |
 
-Start here: [demo-todo/DEMO.md](demo-todo/DEMO.md) (deterministic).  
-For LLM orchestration: [crewai/README.md](crewai/README.md).
+Start here: [demo-todo/DEMO.md](demo-todo/DEMO.md).
+
+For multi-agent orchestration (product runtime, not an example app): [packages/aesquad-crew/](../packages/aesquad-crew/).
 
 ## Contracts
 

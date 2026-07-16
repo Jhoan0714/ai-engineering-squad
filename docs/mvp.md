@@ -15,7 +15,7 @@ Ship a usable **four-role engineering squad** that takes a small change from pro
 | **Early embed proof** | `packages/aesquad` **CLI + MCP** `validate` (shared core) | MVP (Wave 2) — done |
 | Full embed suite | Richer CLI, GitHub Action, broader MCP orchestration | Post-MVP (Wave 5) |
 
-MVP includes a **thin embeddable entrypoint** so third parties can try integration before the kit is fully polished. It does **not** include a full multi-agent orchestrator.
+MVP includes a **thin embeddable entrypoint** (`aesquad validate`) and a **dynamic CrewAI runtime** (`aesquad-crew`) that builds agents/tasks from kit content. It does **not** auto-merge without human signoff.
 
 ## In scope
 

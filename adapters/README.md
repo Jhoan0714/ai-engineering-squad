@@ -14,7 +14,7 @@ Maps canonical `roles/`, `skills/`, and `workflows/` into tool-specific discover
 
 1. Clone this repo (or vendor a release).
 2. **Portable:** symlink `skills/*` into `.agents/skills` / `.claude/skills` — see [portable.md](portable.md).
-3. **Multi-agent:** create one isolated agent per MVP role pointing at `roles/*/AGENT.md` — see [multi-agent.md](multi-agent.md).
+3. **Multi-agent:** run `packages/aesquad-crew` against `workflows/*.pipeline.yaml` — see [multi-agent.md](multi-agent.md).
 4. **Validate handoffs:** [packages/aesquad](../packages/aesquad/README.md) (CLI or MCP).
 
 Prefer **symlink + `git pull`** over copying skill/role files so upstream fixes flow through.
