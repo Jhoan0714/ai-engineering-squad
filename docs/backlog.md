@@ -51,7 +51,7 @@ Depends on: **D3** (and ideally D1). Does **not** wait for full demo or rich ada
 
 ### Wave 4 — Polish (P1)
 
-A6, B5, C5–C7, D2, E4, …
+A6, B5, C5–C7, D2, …
 
 ### Wave 5 — Expand (P2)
 
@@ -125,9 +125,9 @@ Each `AGENT.md`: mission, when to use, responsibilities, out of scope, working s
 | ID | Item | Priority | Status | Depends on |
 |----|------|----------|--------|------------|
 | E1 | Canonical repo layout (`AGENTS.md`, roles/, skills/, …) | P0 | done | — |
-| E2 | Portable adapter docs (Cursor / Claude / Copilot) | P0 | todo | E1, B1–B4 |
-| E3 | Multi-agent runtime adapter docs (e.g. OpenClaw) | P0 | todo | E1, B1–B4 |
-| E4 | Install path / symlink-or-copy notes | P1 | todo | E2 or E3 |
+| E2 | Portable adapter docs (Cursor / Claude / Copilot) | P0 | done | E1, B1–B4 |
+| E3 | Multi-agent runtime adapter docs (e.g. OpenClaw) | P0 | done | E1, B1–B4 |
+| E4 | Install path / symlink-or-copy notes | P1 | done | E2 or E3 |
 
 ---
 
@@ -197,7 +197,7 @@ Use this when pulling work — ignore epic letters:
 - [x] D1
 - [x] C1 C2 C3 C4
 - [x] H0a H0b H0c
-- [ ] E2 E3
+- [x] E2 E3 E4
 - [ ] F5 F1 F2 F3 F4
 
 ---
