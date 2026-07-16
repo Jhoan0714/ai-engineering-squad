@@ -2,7 +2,7 @@
 
 Thin **CLI + MCP** surface for validating AI Engineering Squad handoff contracts (JSON Schema).
 
-This is backlog **H0**: prove embeddable value early. It does **not** run OpenClaw or orchestrate agents — it only validates handoff JSON.
+This is backlog **H0**: prove embeddable value early. It does **not** run CrewAI or orchestrate agents — it only validates handoff JSON.
 
 ## Install (from repo root)
 
