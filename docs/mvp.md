@@ -12,8 +12,8 @@ Ship a usable **four-role engineering squad** that takes a small change from pro
 |-------|------------|--------|
 | Content | Roles, skills, workflows | MVP (Wave 1) |
 | Contracts | Handoff shapes + pluggable adapter APIs | MVP (Wave 1) |
-| **Early embed proof** | One thin callable surface (`validate` via CLI **or** Action **or** tiny MCP) | MVP (Wave 2) — validate value early |
-| Full embed suite | Richer CLI, Action, MCP orchestration | Post-MVP (Wave 5) |
+| **Early embed proof** | `packages/aesquad` **CLI + MCP** `validate` (shared core) | MVP (Wave 2) — done |
+| Full embed suite | Richer CLI, GitHub Action, broader MCP orchestration | Post-MVP (Wave 5) |
 
 MVP includes a **thin embeddable entrypoint** so third parties can try integration before the kit is fully polished. It does **not** include a full multi-agent orchestrator.
 
@@ -75,7 +75,7 @@ The MVP is done when all of the following are true:
 5. **Example** project demonstrates: intent → OpenSpec → implementation → QA notes → automated checks → human signoff
 6. **README** install path works in ≤15 minutes for a new user on a clean machine (documented assumptions OK)
 7. **Handoff contracts** are explicit and versionable
-8. **H0 embed proof:** at least one callable entrypoint validates handoffs / feature-delivery checklist and is documented for third-party use in ~5 minutes
+8. **H0 embed proof:** `aesquad validate` (CLI) and MCP tools validate handoffs; documented for third-party use in ~5 minutes
 
 ## Success metrics (early)
 
