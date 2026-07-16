@@ -40,14 +40,15 @@ All instances for one change share the same `changeId`.
 
 See [examples/](examples/) for a single demo `changeId` (`demo-password-reset`) flowing through the chain.
 
-## Validation (until H0 ships)
+## Validation (H0)
 
-Any JSON Schema Draft 2020-12 validator can check instances, for example:
+Use the shared **aesquad** CLI / MCP package:
 
 ```bash
-# Example with npx (optional; not a repo dependency yet)
-npx --yes ajv-cli validate -s contracts/schemas/acceptance-package.schema.json \
-  -d contracts/examples/acceptance-package.example.json
+cd packages/aesquad
+npm install
+node ./bin/aesquad.mjs validate --examples
+node ./bin/aesquad.mjs validate --dir ./examples   # from contracts/, adjust path
 ```
 
-H0 will wrap this into a stable `validate` entrypoint.
+See [packages/aesquad/README.md](../packages/aesquad/README.md).
