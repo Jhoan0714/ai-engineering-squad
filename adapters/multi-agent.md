@@ -27,12 +27,13 @@ Canonical content stays in this repo (`roles/`, `skills/`, `workflows/`, `contra
 cd packages/aesquad-crew
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt && pip install -e .
-python -m aesquad_crew list          # offline: titles/goals from AGENT.md
-export OPENAI_API_KEY=...            # or your provider
+python -m aesquad_crew list --llm llama3.1:latest
+# Ollama must be running: ollama serve
 python -m aesquad_crew run \
   --change-id demo-crewai-spike \
   --idea "Add due dates to todos" \
-  --out-dir ./out
+  --out-dir ./out \
+  --llm llama3.1:latest
 ```
 
 To add a role later: create `roles/<id>/AGENT.md` and a step in `workflows/<id>.pipeline.yaml`. No roster edits in code.
