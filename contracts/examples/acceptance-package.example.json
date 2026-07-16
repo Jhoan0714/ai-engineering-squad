@@ -1,0 +1,34 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-password-reset",
+  "producedBy": "product-manager",
+  "title": "Password reset via email link",
+  "outcome": "A user who forgot their password can regain access without contacting support.",
+  "inScope": [
+    "Request reset link by email",
+    "Set a new password from a time-limited link"
+  ],
+  "outOfScope": [
+    "SMS-based reset",
+    "Admin-initiated password set"
+  ],
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Given a registered email, when the user requests a reset, then they receive a time-limited link.",
+      "priority": "must"
+    },
+    {
+      "id": "AC-2",
+      "statement": "Given a valid reset link, when the user submits a new password meeting policy, then they can sign in with it.",
+      "priority": "must"
+    },
+    {
+      "id": "AC-3",
+      "statement": "Given an expired or used reset link, when the user opens it, then they see a clear error and no password change occurs.",
+      "priority": "must"
+    }
+  ],
+  "successDefinition": "Support tickets for 'forgot password' drop and users complete reset without manual intervention in the happy path.",
+  "notes": "Example only — not a real product requirement."
+}
