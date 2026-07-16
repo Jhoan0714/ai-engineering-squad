@@ -153,9 +153,9 @@ One callable entrypoint a third party can embed. Not a full orchestrator.
 
 | ID | Item | Priority | Status | Depends on |
 |----|------|----------|--------|------------|
-| H0a | Choose first surface (CLI **or** CI Action **or** tiny MCP) | P0 | todo | — |
-| H0b | Implement minimal `validate` (handoffs / feature-delivery checklist) | P0 | todo | D3, H0a |
-| H0c | Document “embed this in 5 minutes” for H0b | P0 | todo | H0b |
+| H0a | Choose first surface: **CLI + MCP** (Action deferred) | P0 | done | — |
+| H0b | Implement minimal `validate` (CLI + MCP shared core) | P0 | done | D3, H0a |
+| H0c | Document “embed this in 5 minutes” for H0b | P0 | done | H0b |
 
 ### H1+ — Full suite (post-MVP / Wave 5)
 
@@ -164,7 +164,7 @@ One callable entrypoint a third party can embed. Not a full orchestrator.
 | H1 | Versioned installable package of roles/skills | P2 | todo | MVP kit stable |
 | H2 | Richer CLI (`init`, run workflow helpers) | P2 | todo | H0b |
 | H3 | GitHub Action (if not chosen as H0a) or Action v2 | P2 | todo | H0b |
-| H4 | MCP server exposing squad tools | P2 | todo | H0b |
+| H4 | Richer MCP server (beyond validate) | P2 | todo | H0b |
 | H5 | Public contract semver policy | P2 | todo | D3, H0b |
 
 ---
@@ -196,7 +196,7 @@ Use this when pulling work — ignore epic letters:
 - [x] D3
 - [x] D1
 - [x] C1 C2 C3 C4
-- [ ] H0a H0b H0c
+- [x] H0a H0b H0c
 - [ ] E2 E3
 - [ ] F5 F1 F2 F3 F4
 

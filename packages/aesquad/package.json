@@ -1,0 +1,33 @@
+{
+  "name": "aesquad",
+  "version": "0.1.0",
+  "description": "CLI and MCP server to validate AI Engineering Squad handoff contracts (JSON Schema).",
+  "type": "module",
+  "license": "Apache-2.0",
+  "bin": {
+    "aesquad": "./bin/aesquad.mjs"
+  },
+  "scripts": {
+    "validate:examples": "node ./bin/aesquad.mjs validate --examples",
+    "mcp": "node ./src/mcp.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1",
+    "zod": "^3.24.4"
+  },
+  "files": [
+    "bin/",
+    "src/",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jhoan0714/ai-engineering-squad.git",
+    "directory": "packages/aesquad"
+  }
+}
