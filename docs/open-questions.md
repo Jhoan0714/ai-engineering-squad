@@ -7,8 +7,6 @@ Decisions still open before or during implementation. Update status as they clos
 | # | Question | Options / notes | Status |
 |---|----------|-----------------|--------|
 | 1 | Exact OpenSpec convention in-repo | Upstream OpenSpec layout vs lightweight `openspec/` subset documented here | open |
-| 3 | First portable tool to optimize for | Cursor vs Claude Code vs both in parallel for E2 | open |
-| 4 | First multi-agent runtime to document | OpenClaw first (likely) vs keep runtime-generic longer | open |
 | 5 | Sample app stack for demo only | e.g. small Node/Python app — must stay clearly “example only” | open |
 | 7 | Repo visibility timeline | Public from first commit vs private until demo works | open |
 
@@ -24,6 +22,8 @@ Decisions still open before or during implementation. Update status as they clos
 | Canonical layout | Root `roles/`, `skills/`, `workflows/`, `contracts/`, `adapters/`, `examples/` + `AGENTS.md` ([docs/layout.md](layout.md)); adapters sync, not fork |
 | Handoff contracts | **JSON + JSON Schema (Draft 2020-12)**; `schemaVersion` `1.0.0` ([contracts/](../contracts/)) |
 | H0 surfaces | **CLI + MCP** sharing `packages/aesquad` validate core (GitHub Action deferred) |
+| Portable adapters (E2) | Document Cursor + Claude Code + Copilot in parallel ([adapters/portable.md](../adapters/portable.md)) |
+| Multi-agent adapter (E3) | **OpenClaw-first** mapping guide ([adapters/multi-agent.md](../adapters/multi-agent.md)) |
 | MVP roles | PM, Senior SE, QA, Automation Engineer |
 | Dual runtime | Portable kit **and** multi-agent runtime |
 | OpenSpec | Required on Senior SE path |
