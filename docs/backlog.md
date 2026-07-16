@@ -135,11 +135,11 @@ Each `AGENT.md`: mission, when to use, responsibilities, out of scope, working s
 
 | ID | Item | Priority | Status | Depends on |
 |----|------|----------|--------|------------|
-| F5 | Pluggable “run checks” adapter contract + one reference impl | P0 | todo | D3 |
-| F1 | Minimal sample app (demo-only stack) | P0 | todo | — |
-| F2 | Sample OpenSpec change | P0 | todo | F1, C2 |
-| F3 | QA notes + Automation checks via adapter | P0 | todo | F1, F5, D3 |
-| F4 | 15-minute demo script | P0 | todo | F2, F3, H0b |
+| F5 | Pluggable “run checks” adapter contract + one reference impl | P0 | done | D3 |
+| F1 | Minimal sample app (demo-only stack) | P0 | done | — |
+| F2 | Sample OpenSpec change | P0 | done | F1, C2 |
+| F3 | QA notes + Automation checks via adapter | P0 | done | F1, F5, D3 |
+| F4 | 15-minute demo script | P0 | done | F2, F3, H0b |
 
 ---
 
@@ -198,7 +198,7 @@ Use this when pulling work — ignore epic letters:
 - [x] C1 C2 C3 C4
 - [x] H0a H0b H0c
 - [x] E2 E3 E4
-- [ ] F5 F1 F2 F3 F4
+- [x] F5 F1 F2 F3 F4
 
 ---
 
