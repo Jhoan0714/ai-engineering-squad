@@ -19,6 +19,17 @@ Canonical entry point for role-based agents, skills, and workflows in this repos
 | QA Engineer | [roles/qa-engineer/](roles/qa-engineer/) | Ready — [AGENT.md](roles/qa-engineer/AGENT.md) |
 | Automation Engineer | [roles/automation-engineer/](roles/automation-engineer/) | Ready — [AGENT.md](roles/automation-engineer/AGENT.md) |
 
+## Core skills (C1–C4)
+
+| Skill | Path |
+|-------|------|
+| `write-acceptance-criteria` | [skills/write-acceptance-criteria/](skills/write-acceptance-criteria/) |
+| `openspec-change` | [skills/openspec-change/](skills/openspec-change/) |
+| `design-test-cases` | [skills/design-test-cases/](skills/design-test-cases/) |
+| `reduce-flakiness` | [skills/reduce-flakiness/](skills/reduce-flakiness/) |
+
+See [skills/README.md](skills/README.md).
+
 ## Layout
 
 See [docs/layout.md](docs/layout.md) for the canonical tree and adapter mapping rules.
