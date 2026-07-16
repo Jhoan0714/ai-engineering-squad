@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-add-todo-priority",
+  "producedBy": "product-manager",
+  "title": "Add priority to todos",
+  "outcome": "Users can mark how urgent a todo is when creating it.",
+  "inScope": [
+    "Optional priority on create (low|medium|high), default medium",
+    "Reject invalid priority values",
+    "Priority visible when listing todos"
+  ],
+  "outOfScope": [
+    "UI",
+    "Database persistence",
+    "Notifications"
+  ],
+  "acceptanceCriteria": [
+    {
+      "id": "AC-1",
+      "statement": "Given a valid title, when a todo is created without priority, then it is stored with priority medium.",
+      "priority": "must"
+    },
+    {
+      "id": "AC-2",
+      "statement": "Given a valid title and priority high, when a todo is created, then the stored todo has priority high.",
+      "priority": "must"
+    },
+    {
+      "id": "AC-3",
+      "statement": "Given an invalid priority value, when a todo is created, then the API returns 400 and no todo is created.",
+      "priority": "must"
+    }
+  ],
+  "successDefinition": "Automated checks for AC-1..AC-3 pass via ./run-checks.sh.",
+  "notes": "Demo sample for ai-engineering-squad Epic F."
+}
