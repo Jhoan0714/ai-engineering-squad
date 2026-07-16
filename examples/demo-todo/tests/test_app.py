@@ -3,12 +3,12 @@ import pytest
 from app.main import app, reset_store
 
 
-@pytest.fixture(autouse=True)
-def _clean():
+@pytest.fixture()
+def client():
     reset_store()
     app.config["TESTING"] = True
-    with app.test_client() as client:
-        yield client
+    with app.test_client() as test_client:
+        yield test_client
 
 
 def test_health(client):
