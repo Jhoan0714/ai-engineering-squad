@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-password-reset",
+  "producedBy": "automation-engineer",
+  "acceptancePackageRef": "contracts/examples/acceptance-package.example.json",
+  "riskNotesRef": "contracts/examples/risk-notes.example.json",
+  "stack": {
+    "name": "example-api-tests",
+    "adapter": "examples/adapters/run-checks.sh"
+  },
+  "mappings": [
+    {
+      "acceptanceCriterionId": "AC-1",
+      "checkId": "CHK-reset-request",
+      "checkPath": "tests/api/password-reset.request.spec.ts",
+      "level": "api",
+      "status": "covered"
+    },
+    {
+      "acceptanceCriterionId": "AC-2",
+      "checkId": "CHK-reset-complete",
+      "checkPath": "tests/api/password-reset.complete.spec.ts",
+      "level": "api",
+      "status": "covered"
+    },
+    {
+      "acceptanceCriterionId": "AC-3",
+      "checkId": "CHK-reset-expired",
+      "checkPath": "tests/api/password-reset.expired.spec.ts",
+      "level": "api",
+      "status": "covered"
+    }
+  ],
+  "howToRun": {
+    "local": "npm test -- tests/api/password-reset*.spec.ts",
+    "ci": "job: api-tests (password-reset suite)"
+  },
+  "flakinessNotes": [
+    "Depends on deterministic clock for token expiry in test env."
+  ],
+  "uncoveredAcceptanceCriteria": []
+}
