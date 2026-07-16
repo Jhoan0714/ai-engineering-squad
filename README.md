@@ -51,9 +51,29 @@ Target demo: in ~15 minutes, run one change from intent to green checks and huma
 | Doc | Purpose |
 |-----|---------|
 | [docs/mvp.md](docs/mvp.md) | MVP scope, DoD, non-goals |
-| [docs/backlog.md](docs/backlog.md) | Prioritized backlog |
+| [docs/backlog.md](docs/backlog.md) | Prioritized backlog (P0 waves) |
 | [docs/roles.md](docs/roles.md) | Full roster + role boundaries |
+| [docs/layout.md](docs/layout.md) | Canonical folder layout (E1) |
 | [docs/open-questions.md](docs/open-questions.md) | Decisions still open |
+| [AGENTS.md](AGENTS.md) | Agent index (roles / skills / workflows) |
+
+## Repository layout (summary)
+
+```text
+roles/        # Role packs (AGENT.md) — MVP folders scaffolded
+skills/       # Shared skills (SKILL.md)
+workflows/    # Multi-role recipes
+contracts/    # Handoff shapes for embeddable validation
+adapters/     # Tool wiring (portable + multi-agent)
+examples/     # Demo apps (later)
+docs/         # Product documentation
+```
+
+See [docs/layout.md](docs/layout.md). Canonical content is tool-agnostic; adapters sync into IDE/runtime paths.
+
+## Contributing / PRs
+
+Prefer **one pull request per backlog feature or milestone** (e.g. E1 layout, then B1 role pack). Keep PRs reviewable and aligned to a single wave item when practical.
 
 ## Language
 
