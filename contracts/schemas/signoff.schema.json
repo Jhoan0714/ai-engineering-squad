@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Jhoan0714/ai-engineering-squad/contracts/schemas/signoff.schema.json",
+  "title": "Signoff",
+  "description": "Human merge / go-no-go decision for a change, after squad handoffs.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "changeId",
+    "producedBy",
+    "decision",
+    "decidedAt",
+    "summary"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "changeId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "producedBy": {
+      "type": "string",
+      "const": "human"
+    },
+    "decision": {
+      "type": "string",
+      "enum": ["approve", "approve-with-risks", "reject"],
+      "description": "Human retains authority; agents only inform."
+    },
+    "decidedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "acceptedRisks": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "acceptancePackageRef": { "type": "string" },
+        "implementationHandoffRef": { "type": "string" },
+        "riskNotesRef": { "type": "string" },
+        "checkMappingRef": { "type": "string" }
+      }
+    }
+  }
+}
