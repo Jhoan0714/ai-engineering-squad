@@ -8,7 +8,6 @@ from pathlib import Path
 
 from aesquad_crew.kit import default_pipeline_path, find_kit_root
 from aesquad_crew.llm import resolve_llm_config
-from aesquad_crew.persist import collect_task_outputs, persist_handoffs
 from aesquad_crew.pipeline import load_pipeline
 from aesquad_crew.role_loader import discover_role_ids, load_role
 from aesquad_crew.validate_runner import maybe_validate
@@ -57,7 +56,7 @@ def _cmd_list(args: argparse.Namespace) -> int:
 
 
 def _cmd_run(args: argparse.Namespace) -> int:
-    from aesquad_crew.crew_factory import build_crew
+    from aesquad_crew.runner import run_pipeline
 
     kit_root = Path(args.kit_root).resolve() if args.kit_root else find_kit_root()
     pipeline_path = (
@@ -82,33 +81,23 @@ def _cmd_run(args: argparse.Namespace) -> int:
             "For Ollama: --llm llama3.1:latest"
         )
 
-    built = build_crew(
+    print(
+        f"Running pipeline `{pipeline.id}` with {len(pipeline.steps)} steps "
+        f"(validate+retry, max {args.max_attempts} attempts/step)…"
+    )
+
+    handoff_dir = run_pipeline(
         pipeline,
         kit_root=kit_root,
         change_id=args.change_id,
         idea=args.idea,
-        verbose=not args.quiet,
-        llm_config=llm_config,
-    )
-
-    print(
-        f"Running pipeline `{pipeline.id}` with {len(pipeline.steps)} dynamic steps…"
-    )
-    result = built.crew.kickoff()
-    task_outputs = collect_task_outputs(result)
-
-    handoff_dir = out_root / "handoffs" / args.change_id
-    persist_handoffs(
-        pipeline=pipeline,
-        steps=built.steps,
-        task_outputs=task_outputs,
-        handoff_dir=handoff_dir,
         out_root=out_root,
-        change_id=args.change_id,
-        idea=args.idea,
+        llm_config=llm_config,
+        verbose=not args.quiet,
+        max_attempts=args.max_attempts,
     )
 
-    if not args.skip_validate and (handoff_dir / pipeline.steps[0].artifact).exists():
+    if not args.skip_validate:
         code = maybe_validate(kit_root, handoff_dir)
         if code != 0:
             return code
@@ -180,6 +169,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--skip-validate",
         action="store_true",
         help="Do not run aesquad validate after writing handoffs",
+    )
+    run_p.add_argument(
+        "--max-attempts",
+        type=int,
+        default=3,
+        help="Max validate+retry attempts per pipeline step (default: 3)",
     )
     run_p.add_argument(
         "--quiet",
