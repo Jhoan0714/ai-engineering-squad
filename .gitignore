@@ -5,9 +5,8 @@ dist/
 coverage/
 *.tgz
 examples/demo-todo/.venv/
-examples/crewai/.venv/
-examples/crewai/handoffs/*/
-!examples/crewai/handoffs/README.md
+packages/aesquad-crew/.venv/
+packages/aesquad-crew/out/
 __pycache__/
 *.py[cod]
 .pytest_cache/
