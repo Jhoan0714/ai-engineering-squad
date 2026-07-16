@@ -37,7 +37,8 @@ node ../aesquad/bin/aesquad.mjs validate --dir ./out/handoffs/<changeId>
 
 - [ ] `list` shows four dynamic steps for feature-delivery
 - [ ] Run writes one JSON per pipeline step
-- [ ] `aesquad validate` passes for those handoffs
+- [ ] Each step passes in-process schema validation (retries if needed)
+- [ ] Final `aesquad validate` passes for those handoffs
 - [ ] Human `signoff.json` still manual
 
 ## Not in scope
