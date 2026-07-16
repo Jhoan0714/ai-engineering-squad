@@ -1,0 +1,56 @@
+# Machine-readable companion to feature-delivery.md
+# Consumed by packages/aesquad-crew to build a sequential Crew dynamically.
+# Adding a role to the crew = add a step here + a roles/<id>/AGENT.md pack.
+
+schemaVersion: "1.0.0"
+id: feature-delivery
+title: Feature delivery
+process: sequential
+description: >
+  PM → Senior SE → QA → Automation → Human.
+  Human signoff is never produced by the crew.
+
+# Steps run in order. contextFrom references earlier step ids.
+steps:
+  - id: product-manager
+    role: product-manager
+    handoff: acceptance-package
+    artifact: acceptance-package.json
+    contextFrom: []
+    taskHint: >
+      Clarify outcome, cut scope, and write testable acceptance criteria
+      with stable ids (AC-1, AC-2, …). List out-of-scope and success definition.
+
+  - id: senior-software-engineer
+    role: senior-software-engineer
+    handoff: implementation-handoff
+    artifact: implementation-handoff.json
+    contextFrom: [product-manager]
+    openspecPathTemplate: openspec/changes/{changeId}/proposal.md
+    taskHint: >
+      Align to the PM acceptance-package. Set openSpec.path to the template path.
+      Summarize the technical approach. Do not invent different acceptance criteria.
+
+  - id: qa-engineer
+    role: qa-engineer
+    handoff: risk-notes
+    artifact: risk-notes.json
+    contextFrom: [product-manager, senior-software-engineer]
+    taskHint: >
+      Validate against AC. Capture risks, scenarios, residualGaps, and
+      automationCandidates. Prefer accept or accept-with-risks when warranted.
+
+  - id: automation-engineer
+    role: automation-engineer
+    handoff: check-mapping
+    artifact: check-mapping.json
+    contextFrom:
+      [product-manager, senior-software-engineer, qa-engineer]
+    taskHint: >
+      Map AC ids to checks. Prefer QA automationCandidates. Set howToRun.local
+      appropriately for the target project when known.
+
+# Produced by a human after the crew finishes — never an agent step.
+human:
+  handoff: signoff
+  artifact: signoff.json
