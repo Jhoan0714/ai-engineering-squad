@@ -23,18 +23,34 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-Configure an LLM for CrewAI (example):
+Configure an LLM — **Ollama (recommended local)** or OpenAI:
 
 ```bash
+# Ollama (you already have llama3.1:latest)
+# Ensure: ollama serve  &&  ollama list
+python -m aesquad_crew run \
+  --change-id demo-crewai-spike \
+  --idea "Add optional due dates to todos" \
+  --out-dir ./out \
+  --llm llama3.1:latest
+
+# Or via env:
+export AESQUAD_LLM=llama3.1:latest
+# optional: export AESQUAD_LLM_BASE_URL=http://localhost:11434
+
+# OpenAI instead:
 export OPENAI_API_KEY=sk-...
+# (omit --llm to use CrewAI default)
 ```
 
-## Inspect (no LLM)
+Bare names like `llama3.1:latest` are normalized to `ollama/llama3.1:latest` with base URL `http://localhost:11434`.
+
+## Inspect (no LLM call)
 
 From the repo root (or any cwd; kit root is auto-detected):
 
 ```bash
-python -m aesquad_crew list
+python -m aesquad_crew list --llm llama3.1:latest
 ```
 
 Shows each pipeline step with role title, goal, skills, and handoff artifact — all loaded dynamically.
@@ -45,7 +61,8 @@ Shows each pipeline step with role title, goal, skills, and handoff artifact —
 python -m aesquad_crew run \
   --change-id demo-crewai-spike \
   --idea "Add optional due dates to todos" \
-  --out-dir ./out
+  --out-dir ./out \
+  --llm llama3.1:latest
 ```
 
 Or after `pip install -e .`:
