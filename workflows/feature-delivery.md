@@ -175,5 +175,6 @@ The feature-delivery workflow is complete for a `changeId` when:
 ## Related
 
 - Contracts overview: [contracts/README.md](../contracts/README.md)
+- Machine-readable pipeline: [feature-delivery.pipeline.yaml](feature-delivery.pipeline.yaml) (consumed by [packages/aesquad-crew](../packages/aesquad-crew/))
 - Demo chain: `changeId` `demo-password-reset` in [contracts/examples/](../contracts/examples/)
-- Future: H0 `validate` will check schema compliance for this workflow
+- Validate: [packages/aesquad](../packages/aesquad/)
