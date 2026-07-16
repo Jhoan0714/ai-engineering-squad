@@ -11,7 +11,6 @@ Decisions still open before or during implementation. Update status as they clos
 | 4 | First multi-agent runtime to document | OpenClaw first (likely) vs keep runtime-generic longer | open |
 | 5 | Sample app stack for demo only | e.g. small Node/Python app — must stay clearly “example only” | open |
 | 7 | Repo visibility timeline | Public from first commit vs private until demo works | open |
-| 8 | Handoff format | Markdown templates vs JSON schemas — **prefer schemas** if H0 validates programmatically | open |
 | 9 | H0 first surface | CLI vs GitHub Action vs tiny MCP — pick before H0b | open |
 
 ## Already decided
@@ -24,6 +23,7 @@ Decisions still open before or during implementation. Update status as they clos
 | Product direction | Kit + contracts → **H0 thin embed in MVP** → full embed suite post-MVP |
 | Backlog rule | **P0 over epic order**; epics are thematic only |
 | Canonical layout | Root `roles/`, `skills/`, `workflows/`, `contracts/`, `adapters/`, `examples/` + `AGENTS.md` ([docs/layout.md](layout.md)); adapters sync, not fork |
+| Handoff contracts | **JSON + JSON Schema (Draft 2020-12)**; `schemaVersion` `1.0.0` ([contracts/](../contracts/)) |
 | MVP roles | PM, Senior SE, QA, Automation Engineer |
 | Dual runtime | Portable kit **and** multi-agent runtime |
 | OpenSpec | Required on Senior SE path |
@@ -33,3 +33,4 @@ Decisions still open before or during implementation. Update status as they clos
 | DevOps in MVP | No (deferred as Platform Engineer) |
 | Full CLI/Action/MCP suite in MVP | No — only H0 `validate` thin slice |
 | PR practice | One PR per backlog feature / milestone |
+| Commit practice | Prefer one commit per file within a feature PR |
