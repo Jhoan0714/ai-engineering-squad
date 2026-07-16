@@ -36,4 +36,4 @@ Write `handoffs/<changeId>/signoff.json` using `contracts/schemas/signoff.schema
 
 - Agents free-chatting as a roundtable
 - Autonomous merge without human signoff
-- OpenClaw / SOUL.md workspaces
+- Replacing the portable IDE kit path
