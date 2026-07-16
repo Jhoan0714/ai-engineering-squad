@@ -124,7 +124,7 @@ Each `AGENT.md`: mission, when to use, responsibilities, out of scope, working s
 
 | ID | Item | Priority | Status | Depends on |
 |----|------|----------|--------|------------|
-| E1 | Canonical repo layout (`AGENTS.md`, roles/, skills/, …) | P0 | todo | — |
+| E1 | Canonical repo layout (`AGENTS.md`, roles/, skills/, …) | P0 | done | — |
 | E2 | Portable adapter docs (Cursor / Claude / Copilot) | P0 | todo | E1, B1–B4 |
 | E3 | Multi-agent runtime adapter docs (e.g. OpenClaw) | P0 | todo | E1, B1–B4 |
 | E4 | Install path / symlink-or-copy notes | P1 | todo | E2 or E3 |
@@ -188,7 +188,7 @@ One callable entrypoint a third party can embed. Not a full orchestrator.
 Use this when pulling work — ignore epic letters:
 
 - [x] A1–A5, A7
-- [ ] E1
+- [x] E1
 - [ ] B1 B2 B3 B4
 - [ ] D3 D1
 - [ ] C1 C2 C3 C4

@@ -7,7 +7,6 @@ Decisions still open before or during implementation. Update status as they clos
 | # | Question | Options / notes | Status |
 |---|----------|-----------------|--------|
 | 1 | Exact OpenSpec convention in-repo | Upstream OpenSpec layout vs lightweight `openspec/` subset documented here | open |
-| 2 | Canonical folder layout | `.agents/skills` + `roles/` vs all under `agents/` — pick when doing E1 | open |
 | 3 | First portable tool to optimize for | Cursor vs Claude Code vs both in parallel for E2 | open |
 | 4 | First multi-agent runtime to document | OpenClaw first (likely) vs keep runtime-generic longer | open |
 | 5 | Sample app stack for demo only | e.g. small Node/Python app — must stay clearly “example only” | open |
@@ -24,6 +23,7 @@ Decisions still open before or during implementation. Update status as they clos
 | License | **Apache License 2.0** |
 | Product direction | Kit + contracts → **H0 thin embed in MVP** → full embed suite post-MVP |
 | Backlog rule | **P0 over epic order**; epics are thematic only |
+| Canonical layout | Root `roles/`, `skills/`, `workflows/`, `contracts/`, `adapters/`, `examples/` + `AGENTS.md` ([docs/layout.md](layout.md)); adapters sync, not fork |
 | MVP roles | PM, Senior SE, QA, Automation Engineer |
 | Dual runtime | Portable kit **and** multi-agent runtime |
 | OpenSpec | Required on Senior SE path |
@@ -32,3 +32,4 @@ Decisions still open before or during implementation. Update status as they clos
 | SDET / Platform / leads | Post-MVP (Epic G) |
 | DevOps in MVP | No (deferred as Platform Engineer) |
 | Full CLI/Action/MCP suite in MVP | No — only H0 `validate` thin slice |
+| PR practice | One PR per backlog feature / milestone |
