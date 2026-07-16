@@ -2,7 +2,7 @@
 
 **Role-based agents for AI-assisted software delivery and quality engineering.**
 
-A portable engineering squad you can run with coding tools (Cursor, Claude Code, Copilot) and multi-agent runtimes (e.g. OpenClaw). Each role has a clear mission, hard boundaries, and concrete deliverables — so agents collaborate like a real delivery team instead of swapping job titles on the same prompt.
+A portable engineering squad you can run with coding tools (Cursor, Claude Code, Copilot) and multi-agent runtimes (CrewAI-first). Each role has a clear mission, hard boundaries, and concrete deliverables — so agents collaborate like a real delivery team instead of swapping job titles on the same prompt.
 
 > Quality and validation are first-class gates, not an afterthought.
 
