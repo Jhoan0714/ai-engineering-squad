@@ -2,9 +2,9 @@
 
 **Status:** ready (backlog **E3**)
 
-Map each AI Engineering Squad **role** to a **CrewAI** `Agent`, and the feature-delivery workflow to a **sequential** `Crew` (pipeline — not a roundtable chat).
+Map each AI Engineering Squad **role** to a **CrewAI** `Agent`, and each `*.pipeline.yaml` workflow to a **sequential** `Crew` (pipeline — not a roundtable chat).
 
-Canonical content stays in this repo (`roles/`, `skills/`, `contracts/`). CrewAI is the orchestration runtime.
+Canonical content stays in this repo (`roles/`, `skills/`, `workflows/`, `contracts/`). CrewAI is the orchestration runtime via [`packages/aesquad-crew`](../packages/aesquad-crew/).
 
 > CrewAI APIs evolve. Confirm imports against [CrewAI docs](https://docs.crewai.com/) for your installed version.
 
@@ -12,26 +12,34 @@ Canonical content stays in this repo (`roles/`, `skills/`, `contracts/`). CrewAI
 
 | Squad concept | CrewAI concept |
 |---------------|----------------|
-| `roles/<id>/AGENT.md` | `Agent` `role` / `goal` / `backstory` (load from the file) |
-| `skills/*` | Tools, knowledge, or prompt appendices |
-| `contracts/*` | Expected JSON outputs of each `Task` |
-| `workflows/feature-delivery.md` | `Process.sequential` task order |
-| `packages/aesquad` | Post-task validation (CLI subprocess or MCP) |
+| `roles/<id>/AGENT.md` | `Agent` title / goal (Mission) / backstory (full pack + skills) |
+| `skills/*` | Appended into agent backstory when listed in the role |
+| `contracts/schemas/*` | Shape each `Task` must produce |
+| `workflows/*.pipeline.yaml` | Step order, handoffs, `contextFrom` graph |
+| `packages/aesquad` | Post-run validation (CLI / MCP) |
+| `packages/aesquad-crew` | Dynamic crew builder + CLI |
 
-**Rule:** do not fork divergent long-term copies of `AGENT.md`. Load or cite the kit path.
+**Rule:** do not hard-code agent rosters in Python. Edit `roles/` and the pipeline YAML; the runtime discovers them.
 
-## MVP crew (four agents)
+## Dynamic crew (not a hard-coded list)
 
-| Agent id | Kit role pack | Typical task output |
-|----------|---------------|---------------------|
-| `product_manager` | `roles/product-manager/AGENT.md` | `acceptance-package.json` |
-| `senior_software_engineer` | `roles/senior-software-engineer/AGENT.md` | OpenSpec + `implementation-handoff.json` (+ code in real runs) |
-| `qa_engineer` | `roles/qa-engineer/AGENT.md` | `risk-notes.json` |
-| `automation_engineer` | `roles/automation-engineer/AGENT.md` | `check-mapping.json` (+ run-checks) |
+```bash
+cd packages/aesquad-crew
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt && pip install -e .
+python -m aesquad_crew list          # offline: titles/goals from AGENT.md
+export OPENAI_API_KEY=...            # or your provider
+python -m aesquad_crew run \
+  --change-id demo-crewai-spike \
+  --idea "Add due dates to todos" \
+  --out-dir ./out
+```
 
-Human remains responsible for **`signoff.json`** (merge / go-no-go).
+To add a role later: create `roles/<id>/AGENT.md` and a step in `workflows/<id>.pipeline.yaml`. No roster edits in code.
 
 ## Pipeline (not roundtable)
+
+Machine-readable source: [workflows/feature-delivery.pipeline.yaml](../workflows/feature-delivery.pipeline.yaml)
 
 ```text
 PM task  → acceptance-package.json
@@ -41,62 +49,12 @@ Automation task → check-mapping.json
 Human    → signoff.json
 ```
 
-Each task receives prior outputs via CrewAI `context=[...]`. Agents do not need free-form multi-party chat.
-
-## Runnable example
-
-See [examples/crewai/](../examples/crewai/):
-
-```bash
-cd examples/crewai
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
-export OPENAI_API_KEY=...   # or your provider key / CrewAI LLM config
-python run_squad.py --change-id demo-crewai-spike --idea "Add due dates to todos"
-```
-
-That writes handoffs under `examples/crewai/handoffs/<changeId>/` and can validate them with `aesquad`.
-
-## Mapping snippet
-
-```python
-from crewai import Agent, Task, Crew, Process
-from pathlib import Path
-
-def load_role(role_id: str) -> str:
-    return Path(f"../../roles/{role_id}/AGENT.md").read_text()
-
-pm = Agent(
-    role="Product Manager",
-    goal="Produce a testable acceptance-package JSON for the change.",
-    backstory=load_role("product-manager"),
-    verbose=True,
-)
-
-# … SE, QA, Automation similarly …
-
-crew = Crew(
-    agents=[pm, se, qa, automation],
-    tasks=[pm_task, se_task, qa_task, automation_task],
-    process=Process.sequential,
-)
-```
-
-## Tool / permission intent
-
-| Agent | Prefer | Avoid |
-|-------|--------|--------|
-| Product Manager | Write AC JSON | Architecture / production code |
-| Senior SE | Code + OpenSpec | Rewriting product AC |
-| QA | Risk notes / scenarios | Framework-first automation |
-| Automation | Checks + check-mapping | Inventing AC |
-
-Express this in prompts/`AGENT.md` boundaries; optionally restrict CrewAI tools per agent.
+Each task receives prior outputs via CrewAI `context=[...]` from `contextFrom`.
 
 ## Validate handoffs
 
 ```bash
-node ../../packages/aesquad/bin/aesquad.mjs validate --dir ./handoffs/<changeId>
+node packages/aesquad/bin/aesquad.mjs validate --dir ./out/handoffs/<changeId>
 ```
 
 ## What this adapter is not
@@ -105,10 +63,11 @@ node ../../packages/aesquad/bin/aesquad.mjs validate --dir ./handoffs/<changeId>
 - Not automatic merge without human signoff
 - Not a requirement to use OpenAI — configure any LLM CrewAI supports
 - Not the place to redefine roles (edit `roles/*/AGENT.md`)
+- Not a hard-coded four-agent script
 
 ## Related
 
-- Example crew: [examples/crewai/](../examples/crewai/)
+- Runtime package: [packages/aesquad-crew/](../packages/aesquad-crew/)
 - Portable IDE wiring: [portable.md](portable.md)
-- Workflow: [workflows/feature-delivery.md](../workflows/feature-delivery.md)
+- Workflow (prose): [workflows/feature-delivery.md](../workflows/feature-delivery.md)
 - Validate: [packages/aesquad/README.md](../packages/aesquad/README.md)
