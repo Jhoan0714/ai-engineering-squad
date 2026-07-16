@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-add-todo-priority",
+  "producedBy": "senior-software-engineer",
+  "acceptancePackageRef": "handoffs/acceptance-package.json",
+  "openSpec": {
+    "path": "openspec/changes/demo-add-todo-priority/proposal.md",
+    "summary": "Add validated priority field to in-memory Todo API create/update paths."
+  },
+  "implementation": {
+    "summary": "Flask handlers validate and store priority; pytest covers happy path and rejection.",
+    "pathsTouched": [
+      "app/main.py",
+      "tests/test_app.py"
+    ],
+    "unitTestsAddedOrUpdated": true
+  },
+  "verificationNotes": [
+    "Run ./run-checks.sh from examples/demo-todo.",
+    "POST /todos with priority=high and GET /todos to inspect."
+  ],
+  "technicalRisks": [
+    "In-memory store resets on process restart (acceptable for demo)."
+  ],
+  "alternativesConsidered": [
+    "Numeric priority 1-5 — rejected for weaker clarity in demo AC."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-add-todo-priority",
+  "producedBy": "automation-engineer",
+  "acceptancePackageRef": "handoffs/acceptance-package.json",
+  "riskNotesRef": "handoffs/risk-notes.json",
+  "stack": {
+    "name": "python-pytest",
+    "adapter": "run-checks.sh"
+  },
+  "mappings": [
+    {
+      "acceptanceCriterionId": "AC-1",
+      "checkId": "CHK-default-priority",
+      "checkPath": "tests/test_app.py::test_create_todo_defaults_priority_medium",
+      "level": "api",
+      "status": "covered"
+    },
+    {
+      "acceptanceCriterionId": "AC-2",
+      "checkId": "CHK-high-priority",
+      "checkPath": "tests/test_app.py::test_create_todo_with_priority",
+      "level": "api",
+      "status": "covered"
+    },
+    {
+      "acceptanceCriterionId": "AC-3",
+      "checkId": "CHK-bad-priority",
+      "checkPath": "tests/test_app.py::test_create_todo_rejects_bad_priority",
+      "level": "api",
+      "status": "covered"
+    }
+  ],
+  "howToRun": {
+    "local": "./run-checks.sh",
+    "ci": "Run examples/demo-todo/run-checks.sh in CI job"
+  },
+  "flakinessNotes": [
+    "In-memory store reset per test via fixture; no known flake."
+  ],
+  "uncoveredAcceptanceCriteria": []
+}

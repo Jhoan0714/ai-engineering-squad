@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-add-todo-priority",
+  "producedBy": "qa-engineer",
+  "acceptancePackageRef": "handoffs/acceptance-package.json",
+  "implementationHandoffRef": "handoffs/implementation-handoff.json",
+  "risks": [
+    {
+      "id": "R-1",
+      "summary": "Invalid priority accepted and stored",
+      "impact": "medium",
+      "likelihood": "low",
+      "relatedAcceptanceCriteria": ["AC-3"]
+    },
+    {
+      "id": "R-2",
+      "summary": "Default priority not applied when omitted",
+      "impact": "medium",
+      "likelihood": "low",
+      "relatedAcceptanceCriteria": ["AC-1"]
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "S-1",
+      "title": "Default priority medium",
+      "relatedAcceptanceCriteria": ["AC-1"],
+      "result": "pass",
+      "notes": "Covered by create without priority + list/assert in tests."
+    },
+    {
+      "id": "S-2",
+      "title": "Create with high priority",
+      "relatedAcceptanceCriteria": ["AC-2"],
+      "result": "pass"
+    },
+    {
+      "id": "S-3",
+      "title": "Reject invalid priority",
+      "relatedAcceptanceCriteria": ["AC-3"],
+      "result": "pass"
+    }
+  ],
+  "bugs": [],
+  "residualGaps": [
+    "No concurrent create load testing (out of demo scope).",
+    "No HTTP-level contract tests outside Flask test client."
+  ],
+  "automationCandidates": [
+    {
+      "scenarioId": "S-1",
+      "rationale": "Stable API behavior; cheap unit/API test.",
+      "suggestedLevel": "api"
+    },
+    {
+      "scenarioId": "S-2",
+      "rationale": "Core outcome for the change.",
+      "suggestedLevel": "api"
+    },
+    {
+      "scenarioId": "S-3",
+      "rationale": "Validation regression guard.",
+      "suggestedLevel": "api"
+    }
+  ],
+  "acceptanceRecommendation": "accept"
+}

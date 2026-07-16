@@ -6,6 +6,7 @@ Maps canonical `roles/`, `skills/`, and `workflows/` into tool-specific discover
 |-----|---------|---------|
 | [portable.md](portable.md) | E2 | Cursor, Claude Code, Copilot |
 | [multi-agent.md](multi-agent.md) | E3 | Multi-agent runtimes (OpenClaw-first) |
+| [run-checks.md](run-checks.md) | F5 | Pluggable check runner contract + demo reference |
 
 **Rule:** adapters sync or document links to canonical content — they do not become a second source of truth.
 
