@@ -20,8 +20,8 @@ A portable engineering squad you can run with coding tools (Cursor, Claude Code,
 
 - A replacement for human judgment on merge/release
 - A lock-in to any single agent runtime or test stack
-- An “autonomous company” of ten bots from day one
-- A full orchestration runtime in the MVP (H0 is validate-only; rich orchestration is post-MVP)
+- A full autonomous company of agents — human signoff remains required
+- A lock-in to any single LLM vendor
 
 ## MVP squad (v1)
 
@@ -60,14 +60,15 @@ Target demo: in ~15 minutes, run one change from intent to green checks and huma
 ## Repository layout (summary)
 
 ```text
-roles/        # Role packs (AGENT.md)
-skills/       # Shared skills (SKILL.md)
-workflows/    # Multi-role recipes
-contracts/    # Handoff shapes (JSON Schema)
-packages/aesquad/  # H0 CLI + MCP validate surface
-adapters/     # Tool wiring (portable + multi-agent)
-examples/     # Demo apps (later)
-docs/         # Product documentation
+roles/              # Role packs (AGENT.md)
+skills/             # Shared skills (SKILL.md)
+workflows/          # Multi-role recipes (+ *.pipeline.yaml)
+contracts/          # Handoff shapes (JSON Schema)
+packages/aesquad/   # H0 CLI + MCP validate
+packages/aesquad-crew/  # Dynamic CrewAI runtime
+adapters/           # Tool wiring (portable + multi-agent)
+examples/           # Demo apps (e.g. demo-todo)
+docs/               # Product documentation
 ```
 
 See [docs/layout.md](docs/layout.md). Canonical content is tool-agnostic; adapters sync into IDE/runtime paths.
@@ -83,6 +84,18 @@ node ./bin/aesquad.mjs validate --examples
 
 Full embed notes: [packages/aesquad/README.md](packages/aesquad/README.md).
 
+## CrewAI runtime
+
+Dynamic agents/tasks from kit content (not a hard-coded roster):
+
+```bash
+cd packages/aesquad-crew
+pip install -r requirements.txt && pip install -e .
+python -m aesquad_crew list
+```
+
+See [packages/aesquad-crew/README.md](packages/aesquad-crew/README.md).
+
 ## Contributing / PRs
 
 Prefer **one pull request per backlog feature or milestone** (e.g. E1 layout, then B1 role pack). Keep PRs reviewable and aligned to a single wave item when practical.
@@ -93,7 +106,7 @@ Repository content is **English** (agents, skills, docs).
 
 ## Status
 
-**MVP in progress** — roles, contracts, skills, feature-delivery workflow, and H0 `aesquad` validate (CLI + MCP) shipped; adapters and sample app still open.
+**MVP content shipped** — roles, contracts, skills, feature-delivery workflow, H0 `aesquad` validate, portable + CrewAI adapters, demo-todo, and dynamic `aesquad-crew` runtime.
 
 ## License
 
