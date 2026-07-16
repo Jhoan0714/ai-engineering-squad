@@ -100,10 +100,10 @@ Each `AGENT.md`: mission, when to use, responsibilities, out of scope, working s
 
 | ID | Item | Priority | Status | Depends on |
 |----|------|----------|--------|------------|
-| C1 | `skills/write-acceptance-criteria` | P0 | todo | E1 |
-| C2 | `skills/openspec-change` | P0 | todo | E1 |
-| C3 | `skills/design-test-cases` | P0 | todo | E1 |
-| C4 | `skills/reduce-flakiness` | P0 | todo | E1 |
+| C1 | `skills/write-acceptance-criteria` | P0 | done | E1 |
+| C2 | `skills/openspec-change` | P0 | done | E1 |
+| C3 | `skills/design-test-cases` | P0 | done | E1 |
+| C4 | `skills/reduce-flakiness` | P0 | done | E1 |
 | C5 | `skills/code-review` | P1 | todo | E1 |
 | C6 | `skills/minimal-diff` | P1 | todo | E1 |
 | C7 | `skills/bug-report-quality` | P1 | todo | E1 |
@@ -195,7 +195,7 @@ Use this when pulling work — ignore epic letters:
 - [x] B4
 - [x] D3
 - [x] D1
-- [ ] C1 C2 C3 C4
+- [x] C1 C2 C3 C4
 - [ ] H0a H0b H0c
 - [ ] E2 E3
 - [ ] F5 F1 F2 F3 F4
