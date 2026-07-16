@@ -4,7 +4,7 @@
 
 - [ ] Python 3.10+
 - [ ] `pip install -r packages/aesquad-crew/requirements.txt && pip install -e packages/aesquad-crew`
-- [ ] LLM credentials for CrewAI
+- [ ] LLM: Ollama (`ollama pull llama3.1` + `ollama serve`) **or** cloud API credentials
 - [ ] `packages/aesquad` ready (`npm install`)
 
 ## Inspect (offline)
@@ -12,18 +12,19 @@
 ```bash
 cd packages/aesquad-crew
 source .venv/bin/activate
-python -m aesquad_crew list
+python -m aesquad_crew list --llm llama3.1:latest
 ```
 
 Confirm goals/titles come from `roles/*/AGENT.md`, not hard-coded strings.
 
-## Run
+## Run (Ollama)
 
 ```bash
 python -m aesquad_crew run \
   --change-id spike-$(date +%Y%m%d) \
   --idea "Describe the change outcome" \
-  --out-dir ./out
+  --out-dir ./out \
+  --llm llama3.1:latest
 ```
 
 ## Validate
