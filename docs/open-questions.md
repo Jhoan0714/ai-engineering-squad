@@ -23,7 +23,7 @@ Decisions still open before or during implementation. Update status as they clos
 | H0 surfaces | **CLI + MCP** sharing `packages/aesquad` validate core (GitHub Action deferred) |
 | Sample app stack (F*) | **Python** (Flask + pytest) in `examples/demo-todo` — demo-only |
 | Portable adapters (E2) | Document Cursor + Claude Code + Copilot in parallel ([adapters/portable.md](../adapters/portable.md)) |
-| Multi-agent adapter (E3) | **OpenClaw-first** mapping guide ([adapters/multi-agent.md](../adapters/multi-agent.md)) |
+| Multi-agent adapter (E3) | **CrewAI-first** mapping + example ([adapters/multi-agent.md](../adapters/multi-agent.md), [examples/crewai/](../examples/crewai/)) |
 | MVP roles | PM, Senior SE, QA, Automation Engineer |
 | Dual runtime | Portable kit **and** multi-agent runtime |
 | OpenSpec | Required on Senior SE path |

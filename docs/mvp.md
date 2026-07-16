@@ -24,7 +24,7 @@ MVP includes a **thin embeddable entrypoint** so third parties can try integrati
 | Surface | Purpose |
 |---------|---------|
 | **Portable kit** | Roles/skills/workflows consumable by Cursor, Claude Code, Copilot, etc. |
-| **Multi-agent runtime** | Same roles as isolated agents (e.g. OpenClaw) with tool allowlists |
+| **Multi-agent runtime** | Same roles as a sequential CrewAI crew (pipeline handoffs) |
 
 Canonical content lives once; adapters map discovery paths per tool. Neither runtime is optional in the design — both are first-class.
 

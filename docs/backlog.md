@@ -126,7 +126,7 @@ Each `AGENT.md`: mission, when to use, responsibilities, out of scope, working s
 |----|------|----------|--------|------------|
 | E1 | Canonical repo layout (`AGENTS.md`, roles/, skills/, …) | P0 | done | — |
 | E2 | Portable adapter docs (Cursor / Claude / Copilot) | P0 | done | E1, B1–B4 |
-| E3 | Multi-agent runtime adapter docs (e.g. OpenClaw) | P0 | done | E1, B1–B4 |
+| E3 | Multi-agent runtime adapter docs + CrewAI example | P0 | done | E1, B1–B4 |
 | E4 | Install path / symlink-or-copy notes | P1 | done | E2 or E3 |
 
 ---
