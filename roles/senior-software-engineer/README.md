@@ -1,5 +1,8 @@
 # Senior Software Engineer
 
-**Status:** placeholder — `AGENT.md` lands in backlog **B2**.
+Role pack for the Senior Software Engineer agent.
 
-This role **writes production code** and authors OpenSpec changes. See [docs/roles.md](../../docs/roles.md).
+- **Agent definition:** [AGENT.md](AGENT.md)
+- **Catalog summary:** [docs/roles.md](../../docs/roles.md)
+
+This role **writes production code** and authors OpenSpec changes.

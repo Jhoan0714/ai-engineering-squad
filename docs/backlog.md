@@ -89,7 +89,7 @@ Each `AGENT.md`: mission, when to use, responsibilities, out of scope, working s
 | ID | Item | Priority | Status | Depends on |
 |----|------|----------|--------|------------|
 | B1 | `roles/product-manager/AGENT.md` | P0 | done | E1 |
-| B2 | `roles/senior-software-engineer/AGENT.md` | P0 | todo | E1 |
+| B2 | `roles/senior-software-engineer/AGENT.md` | P0 | done | E1 |
 | B3 | `roles/qa-engineer/AGENT.md` | P0 | todo | E1 |
 | B4 | `roles/automation-engineer/AGENT.md` | P0 | todo | E1 |
 | B5 | Per-role example prompts (expand) | P1 | todo | B1–B4 |
@@ -190,7 +190,8 @@ Use this when pulling work — ignore epic letters:
 - [x] A1–A5, A7
 - [x] E1
 - [x] B1
-- [ ] B2 B3 B4
+- [x] B2
+- [ ] B3 B4
 - [ ] D3 D1
 - [ ] C1 C2 C3 C4
 - [ ] H0a H0b H0c
