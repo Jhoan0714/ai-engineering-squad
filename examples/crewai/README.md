@@ -2,7 +2,7 @@
 
 Run the AI Engineering Squad as a **sequential CrewAI crew** (pipeline).
 
-This replaces any OpenClaw-oriented multi-agent path. Canonical roles/skills/contracts stay in the kit root.
+Canonical roles/skills/contracts stay in the kit root; this folder is the runnable orchestration example.
 
 ## Pipeline
 
