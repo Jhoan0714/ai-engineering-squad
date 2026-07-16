@@ -4,7 +4,7 @@ Status: **decided** (backlog E1)
 
 ## Decision
 
-Canonical content lives at the **repository root** in tool-agnostic folders. Tool-specific paths (Cursor, Claude Code, OpenClaw, etc.) are documented under `adapters/` and may copy or symlink into place — they are not the source of truth.
+Canonical content lives at the **repository root** in tool-agnostic folders. Tool-specific paths (Cursor, Claude Code, CrewAI, etc.) are documented under `adapters/` and may copy or symlink into place — they are not the source of truth.
 
 We do **not** bury the kit only under `.agents/` or `.cursor/`, so GitHub browsing and multi-runtime use stay clear.
 
@@ -28,7 +28,7 @@ ai-engineering-squad/
 ├── adapters/                 # How to wire canonical content into each tool
 │   ├── README.md
 │   ├── portable.md           # Cursor / Claude / Copilot (E2)
-│   └── multi-agent.md        # e.g. OpenClaw (E3)
+│   └── multi-agent.md        # CrewAI-first (E3)
 ├── packages/
 │   └── aesquad/              # H0 CLI + MCP validate surface
 ├── examples/                 # Demo apps and walkthroughs (F*)
