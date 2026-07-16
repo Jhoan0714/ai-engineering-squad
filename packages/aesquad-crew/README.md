@@ -21,6 +21,7 @@ python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 pip install -e .
+# Ollama needs the litellm extra (already in requirements as crewai[litellm])
 ```
 
 Configure an LLM — **Ollama (recommended local)** or OpenAI:
@@ -44,6 +45,15 @@ export OPENAI_API_KEY=sk-...
 ```
 
 Bare names like `llama3.1:latest` are normalized to `ollama/llama3.1:latest` with base URL `http://localhost:11434`.
+
+Each step is run **sequentially** with:
+1. Full JSON Schema + canonical `contracts/examples/*.example.json` in the prompt
+2. Fixed string refs (`acceptancePackageRef`, …)
+3. **Schema validate + retry** (default 3 attempts) before moving on
+
+```bash
+python -m aesquad_crew run ... --max-attempts 3
+```
 
 ## Inspect (no LLM call)
 
