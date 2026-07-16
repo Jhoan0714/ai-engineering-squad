@@ -7,6 +7,7 @@ import sys
 from pathlib import Path
 
 from aesquad_crew.kit import default_pipeline_path, find_kit_root
+from aesquad_crew.llm import resolve_llm_config
 from aesquad_crew.persist import collect_task_outputs, persist_handoffs
 from aesquad_crew.pipeline import load_pipeline
 from aesquad_crew.role_loader import discover_role_ids, load_role
@@ -22,12 +23,20 @@ def _cmd_list(args: argparse.Namespace) -> int:
     )
     pipeline = load_pipeline(pipeline_path)
     available = discover_role_ids(kit_root / "roles")
+    llm_config = resolve_llm_config(
+        model=getattr(args, "llm", None),
+        base_url=getattr(args, "llm_base_url", None),
+    )
 
     print(f"Kit root:     {kit_root}")
     print(f"Pipeline:     {pipeline_path}")
     print(f"Pipeline id:  {pipeline.id} ({pipeline.title})")
     print(f"Process:      {pipeline.process}")
     print(f"Roles on disk:{', '.join(available) or '(none)'}")
+    if llm_config:
+        print(f"LLM:          {llm_config.display}")
+    else:
+        print("LLM:          (CrewAI default — set --llm or AESQUAD_LLM for Ollama)")
     print()
     print("Steps (dynamic agents/tasks):")
     for i, step in enumerate(pipeline.steps, start=1):
@@ -58,6 +67,20 @@ def _cmd_run(args: argparse.Namespace) -> int:
     )
     out_root = Path(args.out_dir).resolve() if args.out_dir else Path.cwd()
     pipeline = load_pipeline(pipeline_path)
+    llm_config = resolve_llm_config(
+        model=args.llm,
+        base_url=args.llm_base_url,
+        api_key=args.llm_api_key,
+        temperature=args.temperature,
+    )
+
+    if llm_config:
+        print(f"Using LLM: {llm_config.display}")
+    else:
+        print(
+            "Using CrewAI default LLM (usually OpenAI). "
+            "For Ollama: --llm llama3.1:latest"
+        )
 
     built = build_crew(
         pipeline,
@@ -65,6 +88,7 @@ def _cmd_run(args: argparse.Namespace) -> int:
         change_id=args.change_id,
         idea=args.idea,
         verbose=not args.quiet,
+        llm_config=llm_config,
     )
 
     print(
@@ -91,6 +115,30 @@ def _cmd_run(args: argparse.Namespace) -> int:
     return 0
 
 
+def _add_llm_args(parser: argparse.ArgumentParser) -> None:
+    parser.add_argument(
+        "--llm",
+        help=(
+            "Model id (e.g. llama3.1:latest, ollama/llama3.1:latest, gpt-4o-mini). "
+            "Also: AESQUAD_LLM"
+        ),
+    )
+    parser.add_argument(
+        "--llm-base-url",
+        help="LLM base URL (default for ollama/: http://localhost:11434). Also: AESQUAD_LLM_BASE_URL",
+    )
+    parser.add_argument(
+        "--llm-api-key",
+        help="Optional API key. Also: AESQUAD_LLM_API_KEY",
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=None,
+        help="Sampling temperature (default 0.2 when --llm is set)",
+    )
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="aesquad-crew",
@@ -114,6 +162,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--pipeline",
         help="Pipeline YAML (default: workflows/feature-delivery.pipeline.yaml)",
     )
+    _add_llm_args(list_p)
     list_p.set_defaults(func=_cmd_list)
 
     run_p = sub.add_parser("run", help="Execute the sequential crew for a change")
@@ -137,6 +186,7 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Less CrewAI verbose logging",
     )
+    _add_llm_args(run_p)
     run_p.set_defaults(func=_cmd_run)
 
     return parser
