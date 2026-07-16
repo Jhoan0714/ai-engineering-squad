@@ -23,15 +23,16 @@ ai-engineering-squad/
 │       └── SKILL.md
 ├── workflows/                # Multi-role collaboration recipes
 │   └── <workflow-id>.md
-├── contracts/                # Handoff shapes (templates / schemas)
+├── contracts/                # Handoff shapes (JSON Schema + examples)
 │   └── ...
 ├── adapters/                 # How to wire canonical content into each tool
 │   ├── README.md
 │   ├── portable.md           # Cursor / Claude / Copilot (E2)
 │   └── multi-agent.md        # e.g. OpenClaw (E3)
+├── packages/
+│   └── aesquad/              # H0 CLI + MCP validate surface
 ├── examples/                 # Demo apps and walkthroughs (F*)
-├── docs/                     # Product docs (MVP, backlog, roles catalog, …)
-└── (future) bin/ or packages/  # H0+ embeddable surfaces — not part of E1
+└── docs/                     # Product docs (MVP, backlog, roles catalog, …)
 ```
 
 ## Naming
@@ -41,7 +42,7 @@ ai-engineering-squad/
 | Role | `roles/<kebab-case>/AGENT.md` | Industry title in prose; id in kebab-case |
 | Skill | `skills/<kebab-case>/SKILL.md` | YAML frontmatter `name` + `description` |
 | Workflow | `workflows/<kebab-case>.md` | One workflow per file |
-| Contract | `contracts/<kebab-case>.*` | Prefer versionable schemas when H0 validates (see open questions) |
+| Contract | `contracts/<kebab-case>.*` | JSON Schema + examples; validated by `packages/aesquad` |
 
 ## Adapter rule
 
@@ -49,8 +50,8 @@ ai-engineering-squad/
 2. Adapters **reference or sync** those paths; do not fork divergent copies long-term.
 3. Optional local discovery dirs (e.g. `.cursor/skills`, `.agents/skills`) are install-time artifacts, not upstream content.
 
-## Out of scope for this layout milestone
+## Out of scope for the original E1 layout milestone
 
-- Full `AGENT.md` / `SKILL.md` bodies (B*, C*)
+- Full `AGENT.md` / `SKILL.md` bodies (shipped later as B*/C*)
 - Adapter how-tos (E2, E3)
-- H0 CLI/Action binary layout (Wave 2)
+- H0 was planned for Wave 2 — now lives under `packages/aesquad/`
