@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "1.0.0",
+  "changeId": "demo-password-reset",
+  "producedBy": "senior-software-engineer",
+  "acceptancePackageRef": "contracts/examples/acceptance-package.example.json",
+  "openSpec": {
+    "path": "openspec/changes/demo-password-reset/proposal.md",
+    "summary": "Add reset-token issuance and password update endpoints; reuse existing auth password policy."
+  },
+  "implementation": {
+    "summary": "Implemented token create/consume flows and password update with expiry checks.",
+    "pullRequestUrl": "https://github.com/example/app/pull/42",
+    "pathsTouched": [
+      "src/auth/reset.ts",
+      "src/auth/reset.test.ts"
+    ],
+    "unitTestsAddedOrUpdated": true
+  },
+  "verificationNotes": [
+    "Request reset for a known user and confirm email (or outbox) contains a link.",
+    "Complete reset and sign in with the new password.",
+    "Replay an expired token and confirm rejection."
+  ],
+  "technicalRisks": [
+    "Email delivery latency may affect exploratory timing."
+  ],
+  "alternativesConsidered": [
+    "Magic-link login only — rejected to keep password auth."
+  ]
+}
