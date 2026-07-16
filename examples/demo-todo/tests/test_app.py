@@ -17,6 +17,12 @@ def test_health(client):
     assert res.get_json()["status"] == "ok"
 
 
+def test_create_todo_defaults_priority_medium(client):
+    res = client.post("/todos", json={"title": "no priority set"})
+    assert res.status_code == 201
+    assert res.get_json()["priority"] == "medium"
+
+
 def test_create_todo_with_priority(client):
     res = client.post("/todos", json={"title": "Ship demo", "priority": "high"})
     assert res.status_code == 201
